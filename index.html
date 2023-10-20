@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text to Speech</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #0074d9;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Text to Speech</h1>
+        <textarea id="textToSpeak" placeholder="Enter text to convert to speech"></textarea>
+        <button id="speakButton">Speak</button>
+        <audio id="audio" controls></audio>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const textToSpeak = document.getElementById('textToSpeak');
+            const speakButton = document.getElementById('speakButton');
+            const audio = document.getElementById('audio');
+
+            const googleTTSUrl = 'https://translate.google.com/translate_tts?ie=UTF-8&tl=en&client=tw-ob&q=';
+
+            speakButton.addEventListener('click', function () {
+                const text = textToSpeak.value;
+                if (text.trim() !== '') {
+                    const ttsUrl = `${googleTTSUrl}${encodeURIComponent(text)}`;
+                    audio.src = ttsUrl;
+                    audio.play();
+                }
+            });
+        });
+    </script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=bV6TWmbe"></script>
+</body>
+</html>
